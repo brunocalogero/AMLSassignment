@@ -9,3 +9,5 @@ Indeed this is shown by the fact that using the CNN hasn't very much improved ou
 and the faces of different scales can appear anywhere in the image' unlike the HOG classifier.  
 
 higher dimensional space to learn more representations
+
+https://github.com/opencv/opencv/tree/master/data/haarcascades - for the haarcascade pre-trained models
