@@ -1,0 +1,22 @@
+full dataset of shape: (4546, 128, 128, 3)
+full labels of shape: (4546,)
+X_data of shape: (4546, 128, 128, 3)
+Y_data of shape: (4546,)
+X_train of shape: (2908, 128, 128, 3)
+y_train of shape: (2908,)
+X_val of shape: (728, 128, 128, 3)
+y_val of shape: (728,)
+X_test of shape: (910, 128, 128, 3)
+y_test of shape: (910,)
+X_train of shape: (2908, 49152)
+X_val of shape: (728, 49152)
+X_test of shape: (910, 49152)
+[ 187.0849381   190.80914718  194.27063274  188.85350757  192.59731774
+  196.07255846  189.66093535  193.36176066  196.85591472  190.05570839]
+Start grid search at 2018-12-26 20:23:41.926038
+Stop grid search 2018-12-27 01:56:53.497901
+Elapsed grid search time 5:33:11.571863
+Start learning with best params at 2018-12-27 01:56:53.500577
+Stop learning 2018-12-27 01:58:37.998150
+Elapsed learning time 0:01:44.497573
+0.899725274725
