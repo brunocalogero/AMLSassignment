@@ -20,13 +20,15 @@ labels_filename = 'attribute_list.csv'
 # user choses grey scale or not, 0 for yes, 1 for no
 grey_scale = 1
 
+# Import whole pre-processed Dataset (training and test)
+
 # lists keep the order
 full_dataset = []
 full_labels = []
 
 # collect labels
 df = pd.read_csv(labels_filename, skiprows=1, index_col='file_name')
-newdf = df[df.columns[2]]
+newdf = df[df.columns[3]]
 
 # collect pre-processed images and sort them to labels
 for (root, dirs, dat_files) in os.walk('{0}'.format(images_dir)):
@@ -150,3 +152,16 @@ print('Elapsed learning time {}'.format(str(elapsed_time)))
 # predict using test set
 predictions = clf.predict(X_test)
 print(accuracy_score(y_test, predictions))
+
+# Now predict the value of the test
+expected = y_test
+
+print("Classification report for classifier %s:\n%s\n"
+      % (clf, metrics.classification_report(expected, predictions)))
+
+cm = metrics.confusion_matrix(expected, predictions)
+print("Confusion matrix:\n%s" % cm)
+
+# plot_confusion_matrix(cm)
+
+print("Accuracy={}".format(metrics.accuracy_score(expected, predictions)))

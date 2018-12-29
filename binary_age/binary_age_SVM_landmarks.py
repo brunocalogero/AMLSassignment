@@ -24,7 +24,7 @@ grey_scale = 1
 
 ##################
 # list of emotions, you can reduce this to see how your accuracy varies
-emotions = ["smile", "no_smile"]
+emotions = ["young", "old"]
 detect_obj = dlib.get_frontal_face_detector()
 predict_obj = dlib.shape_predictor("../preprocessing/models/shape_predictor_68_face_landmarks.dat")
 ##################
@@ -102,7 +102,7 @@ def pull_dataset():
 
     # collect labels
     df = pd.read_csv(labels_filename, skiprows=1, index_col='file_name')
-    newdf = df[df.columns[2]]
+    newdf = df[df.columns[3]]
 
     # collect pre-processed images and sort them to labels
     for (root, dirs, dat_files) in os.walk('{0}'.format(images_dir)):

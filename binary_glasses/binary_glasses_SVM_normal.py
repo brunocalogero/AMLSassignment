@@ -26,7 +26,7 @@ full_labels = []
 
 # collect labels
 df = pd.read_csv(labels_filename, skiprows=1, index_col='file_name')
-newdf = df[df.columns[2]]
+newdf = df[df.columns[1]]
 
 # collect pre-processed images and sort them to labels
 for (root, dirs, dat_files) in os.walk('{0}'.format(images_dir)):
