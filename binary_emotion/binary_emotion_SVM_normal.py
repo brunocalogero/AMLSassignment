@@ -149,7 +149,6 @@ print('Stop learning {}'.format(str(end_time)))
 elapsed_time= end_time - start_time
 print('Elapsed learning time {}'.format(str(elapsed_time)))
 
-
-# predict using validation set
+# predict using test set
 predictions = clf.predict(X_test)
 print(accuracy_score(y_test, predictions))

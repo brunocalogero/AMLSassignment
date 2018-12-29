@@ -165,30 +165,63 @@ print('X_test of shape:', X_test.shape)
 print('y_test of shape:', y_test.shape)
 
 
-classifier = svm.SVC(C=1,kernel='linear', cache_size=8000)
 
+# creating dummy SVM classifier for hyperparameterization
+classifier = svm.SVC()
+
+n_folds = 5
+# choosing different parameter combinations to try
+param_grid = {'C': [0.01, 0.1, 1, 10],
+              'gamma': [0.0001, 0.003, 0.0037, 0.001, 0.01],
+              'kernel': ['rbf', 'linear'],
+             }
+
+# type of scoring used to compare parameter combinations
+acc_scorer = make_scorer(accuracy_score)
+
+# run grid search
 start_time = dt.datetime.now()
-print('Start learning at {}'.format(str(start_time)))
+print('Start grid search at {}'.format(str(start_time)))
 
-classifier.fit(X_train, y_train)
+grid_search = GridSearchCV(classifier, param_grid, cv=n_folds, scoring=acc_scorer, n_jobs=4)
+grid_obj = grid_search.fit(X_val, y_val)
+# get grid search results
+print(grid_obj.cv_results_)
+
+# set the best classifier found for rbf
+clf = grid_obj.best_estimator_
+print(clf)
+end_time = dt.datetime.now()
+print('Stop grid search {}'.format(str(end_time)))
+elapsed_time= end_time - start_time
+print('Elapsed grid search time {}'.format(str(elapsed_time)))
+
+
+# fit the best alg to the training data
+start_time = dt.datetime.now()
+print('Start learning with best params at {}'.format(str(start_time)))
+
+clf.fit(X_train, y_train)
 
 end_time = dt.datetime.now()
 print('Stop learning {}'.format(str(end_time)))
 elapsed_time= end_time - start_time
-print('Elapsed learning {}'.format(str(elapsed_time)))
+print('Elapsed learning time {}'.format(str(elapsed_time)))
 
+
+# predict using test set
+predictions = clf.predict(X_test)
+print(accuracy_score(y_test, predictions))
 
 # Now predict the value of the test
 expected = y_test
-predicted = classifier.predict(X_test)
-
 
 print("Classification report for classifier %s:\n%s\n"
-      % (classifier, metrics.classification_report(expected, predicted)))
+      % (classifier, metrics.classification_report(expected, predictions)))
 
-cm = metrics.confusion_matrix(expected, predicted)
+cm = metrics.confusion_matrix(expected, predictions)
 print("Confusion matrix:\n%s" % cm)
 
 # plot_confusion_matrix(cm)
 
-print("Accuracy={}".format(metrics.accuracy_score(expected, predicted)))
+print("Accuracy={}".format(metrics.accuracy_score(expected, predictions)))

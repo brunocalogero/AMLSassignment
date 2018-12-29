@@ -1,0 +1,34 @@
+starting gatherer
+Sanity Check
+full dataset of shape: (4461, 268)
+full labels of shape: (4461,)
+TOTAL NUMBER OF FACES NOT DETECTED WITH OUR LANDMARKS DETECTOR (IN-BUILT, pre-trained model): 85
+X_data of shape: (4461, 268)
+Y_data of shape: (4461,)
+X_train of shape: (2854, 268)
+y_train of shape: (2854,)
+X_val of shape: (714, 268)
+y_val of shape: (714,)
+X_test of shape: (893, 268)
+y_test of shape: (893,)
+Start learning at 2018-12-29 03:37:36.857464
+Stop learning 2018-12-29 05:23:06.411299
+Elapsed learning 1:45:29.553835
+Classification report for classifier SVC(C=1, cache_size=8000, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=3, gamma='auto_deprecated',
+  kernel='linear', max_iter=-1, probability=False, random_state=None,
+  shrinking=True, tol=0.001, verbose=False):
+              precision    recall  f1-score   support
+
+          -1       0.83      0.82      0.83       212
+           1       0.94      0.95      0.95       681
+
+   micro avg       0.92      0.92      0.92       893
+   macro avg       0.89      0.88      0.89       893
+weighted avg       0.92      0.92      0.92       893
+
+
+Confusion matrix:
+[[174  38]
+ [ 35 646]]
+Accuracy=0.9182530795072789
