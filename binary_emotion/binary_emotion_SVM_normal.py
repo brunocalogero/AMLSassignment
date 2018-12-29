@@ -15,7 +15,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import make_scorer, accuracy_score
 
 # setting user chosen vars
-images_dir = './new_dataset'
+images_dir = '../new_dataset'
 labels_filename = 'attribute_list.csv'
 # user choses grey scale or not, 0 for yes, 1 for no
 grey_scale = 1
@@ -67,8 +67,6 @@ X_data, Y_data = shuffle(full_dataset, full_labels, random_state=0)
 print('X_data of shape:', X_data.shape)
 print('Y_data of shape:', Y_data.shape)
 
-
-
 # perform train and test split (random state set to 1 to ensure same distribution accross different sets)
 # this split is obviously case specific! but cross validation allows us to avoid over-fitting so lets make sure we have a validation set ready.
 # Since the dataset is not extrememly large i'll be using a 60/20/20 split, meaning more or less 1000 validation and test examples and 3000 training examples, to be tested: 75/10/15
@@ -83,8 +81,6 @@ print('X_val of shape:', X_val.shape)
 print('y_val of shape:', y_val.shape)
 print('X_test of shape:', X_test.shape)
 print('y_test of shape:', y_test.shape)
-
-
 
 # Preprocessing: reshape the image data into rows
 X_train = np.reshape(X_train, (X_train.shape[0], -1))
@@ -104,7 +100,6 @@ plt.figure(figsize=(4,4))
 plt.imshow(mean_image.reshape((128,128,3)).astype('uint8')) # visualize the mean image
 plt.show()
 
-
 # second: subtract the mean image from train and test data
 X_train -= mean_image
 X_val -= mean_image
@@ -113,8 +108,6 @@ X_test -= mean_image
 
 # creating dummy SVM classifier for hyperparameterization
 classifier = svm.SVC()
-
-
 
 n_folds = 5
 # choosing different parameter combinations to try
@@ -133,7 +126,9 @@ print('Start grid search at {}'.format(str(start_time)))
 
 grid_search = GridSearchCV(classifier, param_grid, cv=n_folds, scoring=acc_scorer, n_jobs=4)
 grid_obj = grid_search.fit(X_val, y_val)
+# get grid search results
 print(grid_obj.cv_results_)
+
 # set the best classifier found for rbf
 clf = grid_obj.best_estimator_
 print(clf)
