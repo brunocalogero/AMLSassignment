@@ -11,3 +11,4 @@ and the faces of different scales can appear anywhere in the image' unlike the H
 higher dimensional space to learn more representations
 
 https://github.com/opencv/opencv/tree/master/data/haarcascades - for the haarcascade pre-trained models
+http://www.jmlr.org/papers/volume15/srivastava14a/srivastava14a.pdf - dropout
