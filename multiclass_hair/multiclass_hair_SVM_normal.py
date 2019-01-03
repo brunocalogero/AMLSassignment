@@ -10,8 +10,7 @@ import numpy as np
 # Import datasets, classifiers and performance metrics
 from sklearn import svm, metrics
 from sklearn.utils import shuffle
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import train_test_split,  GridSearchCV, learning_curve
 from sklearn.metrics import make_scorer, accuracy_score
 
 # setting user chosen vars
@@ -22,50 +21,63 @@ grey_scale = 1
 
 # Import whole pre-processed Dataset (training and test)
 
-# lists keep the order
-full_dataset = []
-full_labels = []
+def pull_dataset():
+    '''
+    Pulls the full dataset (without outliers).
+    Used as a helper function to obtain full dataset that will be then split to user
+    desired train/validation/test(inference) sets.
+    The examples are shuffled.
+    '''
 
-# collect labels
-df = pd.read_csv(labels_filename, skiprows=1, index_col='file_name')
-newdf = df[df.columns[0]]
+    # lists keep the order
+    full_dataset = []
+    full_labels = []
 
-# collect pre-processed images and sort them to labels
-for (root, dirs, dat_files) in os.walk('{0}'.format(images_dir)):
+    # collect labels
+    df = pd.read_csv(labels_filename, skiprows=1, index_col='file_name')
+    newdf = df['hair_color']
 
-    for file in dat_files:
-        # image grayscaling at import
-        img = cv2.imread('{0}/{1}'.format(images_dir, file), grey_scale)
-        # image equalisation
-        # rescaling image (you can use cv2)
-        res = cv2.resize(img, dsize=(128, 128), interpolation=cv2.INTER_LINEAR)
-        # turn to float for zero centering
-        res = res.astype(float)
-        full_dataset.append(res)
-        full_labels.append(int(file[:-4]))
+    # collect pre-processed images and sort them to labels
+    for (root, dirs, dat_files) in os.walk('{0}'.format(images_dir)):
 
-# only select rows of interest (none outliers) and only keep 'smiling' feature to be evaluated
-full_labels = newdf.loc[full_labels]
-full_labels = full_labels.values.tolist()
+        for file in dat_files:
 
-# now both of our dataset and labels are ordered
+            int_file = int(file[:-4])
+            # removed -1 labeled images for hair colour
+            if df.loc[int_file, 'hair_color'] != -1:
+                # image grayscaling at import
+                img = cv2.imread('{0}/{1}'.format(images_dir, file), grey_scale)
+                # image equalisation (to be inserted if interesting)
+                # rescaling image
+                res = cv2.resize(img, dsize=(128, 128), interpolation=cv2.INTER_LINEAR)
+                # turn to float for zero centering
+                res = res.astype(float)
+                full_dataset.append(res)
+                full_labels.append(int_file)
 
-# numpy array conversion
-full_dataset = np.array(full_dataset)
-full_labels = np.array(full_labels)
+    # only select rows of interest (none outliers) and only keep 'hair_color' feature to be evaluated (removed -1 labeled images for hair colour)
+    full_labels = newdf.loc[full_labels]
+    full_labels = full_labels.values.tolist()
 
-print('full dataset of shape:', full_dataset.shape)
-print('full labels of shape:', full_labels.shape)
+    # now both of our dataset and labels are ordered
 
-# plt.imshow(full_dataset[0])
-full_dataset[0]
+    # numpy array conversion
+    full_dataset = np.array(full_dataset)
+    full_labels = np.array(full_labels)
 
+    print('full dataset of shape:', full_dataset.shape)
+    print('full labels of shape:', full_labels.shape)
 
-# Reshuffling data (for extra randomness)
-X_data, Y_data = shuffle(full_dataset, full_labels, random_state=0)
+    # Reshuffling data (for extra randomness)
+    X_data, Y_data = shuffle(full_dataset, full_labels, random_state=0)
 
-print('X_data of shape:', X_data.shape)
-print('Y_data of shape:', Y_data.shape)
+    print('X_data of shape:', X_data.shape)
+    print('Y_data of shape:', Y_data.shape)
+
+    return X_data, Y_data
+
+# import data (no one hot encoding)
+X_data, y_data = pull_dataset()
 
 # perform train and test split (random state set to 1 to ensure same distribution accross different sets)
 # this split is obviously case specific! but cross validation allows us to avoid over-fitting so lets make sure we have a validation set ready.

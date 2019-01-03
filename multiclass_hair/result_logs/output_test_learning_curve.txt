@@ -1,0 +1,76 @@
+full dataset of shape: (3883, 128, 128, 3)
+full labels of shape: (3883,)
+X_data of shape: (3883, 128, 128, 3)
+Y_data of shape: (3883,)
+X_train of shape: (500, 128, 128, 3)
+y_train of shape: (500,)
+X_test of shape: (200, 128, 128, 3)
+y_test of shape: (200,)
+X_train of shape: (500, 49152)
+X_test of shape: (200, 49152)
+X_train of shape: (500, 49152)
+X_test of shape: (200, 49152)
+Start cross val with SVM linear 2019-01-03 00:26:23.011131
+Stop cross val 2019-01-03 00:31:01.809575
+Elapsed cross val time 0:04:38.798444
+Start learning SVM linear 2019-01-03 00:31:01.809575
+Stop learning 2019-01-03 00:31:09.955668
+Elapsed learning time 0:00:08.146093
+0.825
+Classification report for classifier SVC(C=0.01, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=3, gamma='auto_deprecated',
+  kernel='linear', max_iter=-1, probability=False, random_state=None,
+  shrinking=True, tol=0.001, verbose=False):
+              precision    recall  f1-score   support
+
+           0       0.50      0.33      0.40         3
+           1       0.78      0.93      0.85        45
+           2       0.92      0.85      0.88        27
+           3       0.72      0.79      0.76        43
+           4       0.88      0.72      0.79        53
+           5       0.93      0.93      0.93        29
+
+   micro avg       0.82      0.82      0.82       200
+   macro avg       0.79      0.76      0.77       200
+weighted avg       0.83      0.82      0.82       200
+
+
+Confusion matrix:
+[[ 1  2  0  0  0  0]
+ [ 0 42  0  2  0  1]
+ [ 0  3 23  1  0  0]
+ [ 0  3  2 34  4  0]
+ [ 1  3  0 10 38  1]
+ [ 0  1  0  0  1 27]]
+Start learning with SVM linear 2019-01-03 00:31:13.090472
+Start learning SVM linear 2019-01-03 00:37:19.433839
+Stop learning 2019-01-03 00:37:35.425946
+Elapsed learning time 0:00:15.992107
+0.475
+Classification report for classifier SVC(C=1, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=4, gamma='auto', kernel='poly',
+  max_iter=-1, probability=False, random_state=None, shrinking=True,
+  tol=0.001, verbose=False):
+              precision    recall  f1-score   support
+
+           0       0.00      0.00      0.00         3
+           1       0.36      0.87      0.51        45
+           2       0.64      0.26      0.37        27
+           3       0.38      0.37      0.38        43
+           4       0.94      0.30      0.46        53
+           5       0.94      0.59      0.72        29
+
+   micro avg       0.47      0.47      0.48       200
+   macro avg       0.54      0.40      0.41       200
+weighted avg       0.64      0.47      0.47       200
+
+
+Confusion matrix:
+[[ 0  1  0  1  1  0]
+ [ 2 39  1  2  0  1]
+ [ 0 18  7  2  0  0]
+ [ 0 24  3 16  0  0]
+ [ 0 17  0 20 16  0]
+ [ 3  8  0  1  0 17]]
+Stop learning 2019-01-03 00:37:38.932858
+Elapsed learning time 0:00:19.499019

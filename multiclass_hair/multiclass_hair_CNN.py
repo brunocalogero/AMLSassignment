@@ -1,26 +1,27 @@
 import numpy
 import os
 import cv2
+import time
 
+import datetime as dt
 import tensorflow as tf
 import pandas as pd
 import numpy as np
 
-
-
-from sklearn.model_selection import GridSearchCV
 from keras.models import Sequential
 from keras.layers import Dense, Conv2D, MaxPooling2D, BatchNormalization, Dropout, Activation, Flatten, Input
 from keras.wrappers.scikit_learn import KerasClassifier
 from keras.optimizers import Adam
-from keras.callbacks import TensorBoard # only use this after gridsearch selection done well
+from keras.callbacks import TensorBoard
+from keras.utils import to_categorical
+import keras.metrics
 
 from sklearn import svm, metrics
 from sklearn.utils import shuffle
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import make_scorer, accuracy_score
-from keras.callbacks import TensorBoard
+from matplotlib import pyplot
 
 # user choses grey scale or not, 0 for yes, 1 for no
 grey_scale = 1
@@ -84,15 +85,17 @@ def pull_dataset():
     return X_data, Y_data
 
 # Function to create model, required for KerasClassifier
-def create_model(optimizer='adam', learn_rate=0.01, amsgrad=False, activation=tf.nn.leaky_relu):
+def create_model(optimizer='adam', learn_rate=0.001, amsgrad=False, activation=tf.nn.leaky_relu):
 
-    channel_1, channel_2, channel_3, num_classes =  32, 16, 8, 10
+    channel_1, channel_2, channel_3, num_classes =  64, 32, 8, 6
     # create model
     model = Sequential()
 
     model.add(Conv2D(channel_1, (3, 3), padding='SAME', activation=activation,  input_shape=(128, 128, 3), data_format="channels_last"))
     model.add(BatchNormalization())
     model.add(MaxPooling2D(pool_size=(2, 2), strides=None, padding='valid'))
+
+    model.add(Dropout(0.2))
 
     model.add(Conv2D(channel_2, (3, 3), padding='SAME', activation=activation))
     model.add(BatchNormalization())
@@ -101,14 +104,15 @@ def create_model(optimizer='adam', learn_rate=0.01, amsgrad=False, activation=tf
     # model.add(Conv2D(channel_3, (3, 3), padding='SAME', activation=activation))
     # model.add(BatchNormalization())
     # model.add(MaxPooling2D(pool_size=(2, 2), strides=None, padding='valid'))
+    model.add(Dropout(0.5))
 
     model.add(Flatten())
-    model.add(Dense(num_classes))
+    model.add(Dense(num_classes, activation='softmax'))
 
     optimizer = Adam(lr=learn_rate, amsgrad=amsgrad )
-    # Compile model (sparse cross-entropy used because labels are not one hot encoded)
-    model.compile(loss='sparse_categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
-    model.summary()
+    # Compile model (sparse cross-entropy can be used if one hot encoding not used)
+    model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['acc'])
+
     return model
 
 def batch_epoch_hyper(n_folds):
@@ -202,17 +206,18 @@ def activation_hyper(n_folds):
     for mean, stdev, param in zip(means, stds, params):
         print("%f (%f) with: %r" % (mean, stdev, param))
 
-# print('hyperparameterization: number of neurons per layer (TBD)')
+# NOTE (TBD): hyperparameterization: number of neurons per layer to be added (if time allows)
 
 
 # import data
 X_data, y_data = pull_dataset()
-# consider one hot encoding
+# one hot encode labels (for categorical cross-entropy)
+y_data = to_categorical(y_data, num_classes=6)
 
-# perform train and test split (random state set to 1 to ensure same distribution accross different sets)
-# this split is obviously case specific! but cross validation allows us to avoid over-fitting so lets make sure we have a validation set ready.
-# Since the dataset is not extrememly large i'll be using a 60/20/20 split, meaning more or less 1000 validation and test examples and 3000 training examples, to be tested: 75/10/15
-# in this case we are a little less concerned since we are evaluating smiles which are present in every case, unlike glasses
+# Perform train and test split (random state set to 1 to ensure same distribution accross different sets).
+# This split is obviously case specific! but cross validation allows us to avoid over-fitting so lets make sure we have a validation set ready.
+# Since the dataset is not extremely large i'll be using a 60/20/20 split, meaning more or less 1000 validation and test examples and 3000 training examples, to be tested: 75/10/15.
+# In this case we are a little less concerned since we are evaluating smiles which are present in every case, unlike glasses.
 X_train, X_test, y_train, y_test = train_test_split(X_data, y_data, test_size=0.2, random_state=1)
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=1)
 
@@ -235,6 +240,7 @@ print('X_val of shape:', X_val.shape)
 print('X_test of shape:', X_test.shape)
 
 # Preprocessing: subtract the mean image
+
 # first: compute the image mean based on the training data
 mean_image = np.mean(X_train, axis=0)
 print(mean_image[:10]) # print a few of the elements
@@ -264,11 +270,40 @@ print('X_test of shape:', X_test.shape)
 
 
 # # declaring number of folds for cross_validation
-n_folds = 8
-epoch = 10
-batch_size = 100
+# n_folds = 8   # if using hyperparameterisation, please uncomment
+epochs = 15
+batch_size = 64
 
-
+# retrieve model
+model = create_model()
+model.summary()
 
 # do inference with tensorboard and best parameters + validation set
-tensorboard = TensorBoard(log_dir="logs/{}".format(time()))
+# tensorboard = TensorBoard(log_dir="logs/{}".format(time()))
+
+# fit the best alg to the training data
+start_time = dt.datetime.now()
+print('Start learning with best params at {}'.format(str(start_time)))
+
+model.fit(X_train, y_train, validation_data=(X_val,y_val), epochs=epochs, batch_size=batch_size, verbose=1, callbacks=[TensorBoard(log_dir='logs/8/train')])
+
+end_time = dt.datetime.now()
+print('Stop learning {}'.format(str(end_time)))
+elapsed_time= end_time - start_time
+print('Elapsed learning time {}'.format(str(elapsed_time)))
+
+
+predictions = model.predict(X_test, y_test, batch_size=128)
+
+print(accuracy_score(y_test, predictions))
+
+# Now predict the value of the test
+expected = y_test
+
+print("Classification report for classifier %s:\n%s\n"
+      % (clf, metrics.classification_report(expected, predictions)))
+
+cm = metrics.confusion_matrix(expected, predictions)
+print("Confusion matrix:\n%s" % cm)
+
+print("Accuracy={}".format(metrics.accuracy_score(expected, predictions)))

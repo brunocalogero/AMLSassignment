@@ -1,0 +1,44 @@
+full dataset of shape: (3883, 128, 128, 3)
+full labels of shape: (3883,)
+X_data of shape: (3883, 128, 128, 3)
+Y_data of shape: (3883,)
+X_train of shape: (3106, 128, 128, 3)
+y_train of shape: (3106,)
+X_test of shape: (777, 128, 128, 3)
+y_test of shape: (777,)
+X_train of shape: (3106, 49152)
+X_test of shape: (777, 49152)
+X_train of shape: (3106, 49152)
+X_test of shape: (777, 49152)
+Start cross val with SVM linear 2019-01-03 00:47:46.495703
+Stop cross val 2019-01-03 02:35:05.901533
+Elapsed cross val time 1:47:19.405830
+Start learning SVM linear 2019-01-03 02:35:05.902458
+Stop learning 2019-01-03 02:37:45.956200
+Elapsed learning time 0:02:40.053742
+0.87001287001287
+Classification report for classifier SVC(C=0.01, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=3, gamma='auto_deprecated',
+  kernel='linear', max_iter=-1, probability=False, random_state=None,
+  shrinking=True, tol=0.001, verbose=False):
+              precision    recall  f1-score   support
+
+           0       0.35      0.54      0.42        13
+           1       0.89      0.92      0.91       173
+           2       0.98      0.97      0.98       108
+           3       0.79      0.84      0.82       192
+           4       0.89      0.82      0.86       169
+           5       0.94      0.85      0.89       122
+
+   micro avg       0.87      0.87      0.87       777
+   macro avg       0.81      0.82      0.81       777
+weighted avg       0.88      0.87      0.87       777
+
+
+Confusion matrix:
+[[  7   4   0   1   0   1]
+ [  2 159   1   9   0   2]
+ [  1   0 105   2   0   0]
+ [  1  10   1 162  16   2]
+ [  2   1   0  25 139   2]
+ [  7   4   0   6   1 104]]
