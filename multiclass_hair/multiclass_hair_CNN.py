@@ -285,7 +285,7 @@ model.summary()
 start_time = dt.datetime.now()
 print('Start learning with best params at {}'.format(str(start_time)))
 
-model.fit(X_train, y_train, validation_data=(X_val,y_val), epochs=epochs, batch_size=batch_size, verbose=1, callbacks=[TensorBoard(log_dir='logs/8/train')])
+model.fit(X_train, y_train, validation_data=(X_val,y_val), epochs=epochs, batch_size=batch_size, verbose=1, callbacks=[TensorBoard(log_dir='logs/9/train')])
 
 end_time = dt.datetime.now()
 print('Stop learning {}'.format(str(end_time)))
@@ -293,7 +293,7 @@ elapsed_time= end_time - start_time
 print('Elapsed learning time {}'.format(str(elapsed_time)))
 
 
-predictions = model.predict(X_test, y_test, batch_size=128)
+predictions = model.predict(X_test, batch_size=batch_size)
 
 print(accuracy_score(y_test, predictions))
 
