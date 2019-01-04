@@ -127,7 +127,7 @@ print('Start cross val with SVM linear {}'.format(str(start_time)))
 # Cross validation with 100 iterations to get smoother mean test and train
 # score curves, each time with 20% data randomly selected as a validation set.
 cv = ShuffleSplit(n_splits=8, test_size=0.2, random_state=0)
-estimator = svm.SVC(kernel='linear', C=1)
+estimator = svm.SVC(kernel='linear', C=0.01, cache_size=1500)
 plt, train_scores_mean, train_scores_std, test_scores_mean, test_scores_std, test_scores = plot_learning_curve(estimator, title, X_train, y_train, ylim=(0.7, 1.01), cv=cv, n_jobs=4)
 
 end_time = dt.datetime.now()
