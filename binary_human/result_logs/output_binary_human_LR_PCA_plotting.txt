@@ -1,0 +1,32 @@
+loading train and test PCA based sets...
+X_train of shape: (3636, 250)
+y_train of shape: (3636,)
+X_test of shape: (910, 250)
+y_test of shape: (910,)
+X_test of shape: (3636,)
+y_test of shape: (910,)
+Start cross val with SVM linear 2019-01-05 01:18:43.729796
+Stop cross val 2019-01-05 01:22:02.522220
+Elapsed cross val time 0:03:18.792424
+Start learning SVM linear 2019-01-05 01:22:02.522220
+Stop learning 2019-01-05 01:22:12.934063
+Elapsed learning time 0:00:10.411843
+0.9945054945054945
+Classification report for classifier LogisticRegression(C=1, class_weight=None, dual=False, fit_intercept=True,
+          intercept_scaling=1, max_iter=6000, multi_class='auto', n_jobs=5,
+          penalty='l2', random_state=None, solver='sag', tol=0.0001,
+          verbose=0, warm_start=False):
+              precision    recall  f1-score   support
+
+          -1       1.00      0.99      1.00       529
+           1       0.99      0.99      0.99       381
+
+   micro avg       0.99      0.99      0.99       910
+   macro avg       0.99      0.99      0.99       910
+weighted avg       0.99      0.99      0.99       910
+
+
+Confusion matrix:
+[[526   3]
+ [  2 379]]
+creating csv for inference
