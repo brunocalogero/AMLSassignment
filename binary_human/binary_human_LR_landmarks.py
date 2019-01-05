@@ -15,6 +15,7 @@ from sklearn.utils import shuffle
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import make_scorer, accuracy_score
+from sklearn.linear_model import LogisticRegression
 
 # setting user chosen vars
 images_dir = '../new_dataset'
@@ -166,14 +167,13 @@ print('y_test of shape:', y_test.shape)
 
 
 
-# creating dummy SVM classifier for hyperparameterization
-classifier = svm.SVC()
+# creating dummy LR classifier for hyperparameterization
+classifier = LogisticRegression(penalty='l2', random_state=0,  multi_class='auto', max_iter=-1, n_jobs=5)
 
-n_folds = 5
+n_folds = 10
 # choosing different parameter combinations to try
 param_grid = {'C': [0.01, 0.1, 1, 10],
-              'gamma': [0.0001, 0.003, 0.0037, 0.001, 0.01],
-              'kernel': ['rbf', 'linear'],
+              'solver': ['lbfgs', 'newton-cg', 'sag'],
              }
 
 # type of scoring used to compare parameter combinations
