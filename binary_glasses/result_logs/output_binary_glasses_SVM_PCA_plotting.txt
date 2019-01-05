@@ -1,0 +1,32 @@
+loading train and test PCA based sets...
+X_train of shape: (3636, 250)
+y_train of shape: (3636,)
+X_test of shape: (910, 250)
+y_test of shape: (910,)
+X_test of shape: (3636,)
+y_test of shape: (910,)
+Start cross val with SVM linear 2019-01-04 23:51:05.529185
+Stop cross val 2019-01-04 23:51:41.585010
+Elapsed cross val time 0:00:36.055825
+Start learning SVM linear 2019-01-04 23:51:41.585010
+Stop learning 2019-01-04 23:51:43.099401
+Elapsed learning time 0:00:01.514391
+0.8637362637362638
+Classification report for classifier SVC(C=0.01, cache_size=1500, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=3, gamma=0.04, kernel='poly',
+  max_iter=-1, probability=False, random_state=None, shrinking=True,
+  tol=0.001, verbose=False):
+              precision    recall  f1-score   support
+
+          -1       0.88      0.93      0.91       650
+           1       0.80      0.70      0.74       260
+
+   micro avg       0.86      0.86      0.86       910
+   macro avg       0.84      0.81      0.83       910
+weighted avg       0.86      0.86      0.86       910
+
+
+Confusion matrix:
+[[605  45]
+ [ 79 181]]
+creating csv for inference

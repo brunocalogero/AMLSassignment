@@ -1,0 +1,232 @@
+Computing PCA for label: eyeglasses
+full dataset of shape: (4546, 256, 256, 3)
+full full_dataset_name of shape: (4546,)
+full labels of shape: (4546,)
+X_data of shape: (4546, 256, 256, 3)
+Y_data of shape: (4546,)
+X_data_index of shape: (4546,)
+Y_data_index of shape: (4546,)
+Sanity Check: shuffling and indexes of images for future inference
+True
+True
+Sanity Check: shuffling and indexes of images for future inference
+True
+True
+True
+True
+Starting PCA Transform
+250
+X_train after transformation: [[ 2.88386757e+02  1.03991112e+02  3.36539986e+01 ... -8.34073228e+00
+  -3.96532301e+00 -3.59954522e+00]
+ [ 1.85262169e+02 -3.74402091e+01 -1.70872222e+02 ...  1.21447434e+01
+  -1.45465305e+01 -6.58959248e+00]
+ [-1.65644575e+02  1.50013615e+01 -1.09317975e+02 ...  2.34518487e+01
+   8.84311360e-02  9.14492963e+00]
+ ...
+ [-3.64015252e+02 -3.20004871e+00  1.48437627e+02 ...  5.67500164e+00
+   4.21223126e-01 -3.10445610e+00]
+ [ 7.08311395e+01  7.58880960e+01 -4.65442844e+01 ...  4.32475072e-01
+  -9.23867797e-01 -7.22678429e+00]
+ [-1.86767788e+02 -2.50486508e+01 -6.14566787e+01 ...  1.18341369e+00
+  -1.82663827e+00  9.31633256e+00]]
+X_test after transformation: [[-253.29708635   55.01664654   59.63254633 ...   -4.71130598
+    -2.22451799   -2.35713778]
+ [ 208.98658462   20.17700056   76.96626894 ...    3.59358342
+    -2.17893274   -1.06765914]
+ [-371.89732188 -178.1604043   -56.34020524 ...    5.62064594
+     1.33729816    4.5247384 ]
+ ...
+ [ 224.3792085   -78.94987239   37.26820241 ...    4.04917888
+    -9.84430304   -4.23331913]
+ [ 197.95128574 -144.62597018  234.41904402 ...   -1.87759527
+     4.89822017   15.09726582]
+ [  35.67486034  -19.0416177   -97.45157053 ...   -2.76947979
+    16.28752562    7.56353804]]
+X_train of shape: (3636, 250)
+y_train of shape: (3636,)
+X_test of shape: (910, 250)
+y_test of shape: (910,)
+saving training PCA based sets...
+saving test PCA based sets...
+saving training PCA based sets indexes...
+saving test PCA based sets indexes...
+loading train and test PCA based sets...
+3636
+910
+loading train and test PCA based sets...
+True
+True
+Computing PCA for label: smiling
+full dataset of shape: (4546, 256, 256, 3)
+full full_dataset_name of shape: (4546,)
+full labels of shape: (4546,)
+X_data of shape: (4546, 256, 256, 3)
+Y_data of shape: (4546,)
+X_data_index of shape: (4546,)
+Y_data_index of shape: (4546,)
+Sanity Check: shuffling and indexes of images for future inference
+True
+True
+Sanity Check: shuffling and indexes of images for future inference
+True
+True
+True
+True
+Starting PCA Transform
+250
+X_train after transformation: [[ 288.38675696  103.99111152   33.65399857 ...   -0.66847447
+     0.79063984    0.89922573]
+ [ 185.26216894  -37.44020912 -170.87222204 ...   21.33231208
+     2.05385991   -1.50207106]
+ [-165.64457485   15.00136146 -109.31797493 ...    8.74457554
+    -5.40910202   15.61392532]
+ ...
+ [-364.01525202   -3.20004871  148.43762665 ...    1.76640653
+    -4.31077795    4.10890766]
+ [  70.83113947   75.88809599  -46.54428437 ...   -7.12779483
+     1.86599024    5.49335505]
+ [-186.76778844  -25.04865081  -61.45667872 ...    9.94990715
+    -0.4031027    -1.55492554]]
+X_test after transformation: [[-253.29708635   55.01664654   59.63254633 ...    3.40223602
+    -2.04339587   -2.57228548]
+ [ 208.98658462   20.17700056   76.96626894 ...    5.80692055
+    -3.8805574    12.01571722]
+ [-371.89732188 -178.1604043   -56.34020524 ...    6.13366881
+     6.5754475    -3.74372359]
+ ...
+ [ 224.3792085   -78.94987239   37.26820241 ...   -1.02339084
+    -2.2758539    -4.35519107]
+ [ 197.95128574 -144.62597018  234.41904402 ...   -2.74984498
+    -5.01845753   -5.43945553]
+ [  35.67486034  -19.0416177   -97.45157053 ...   -9.69630338
+     1.18606699    4.57131037]]
+X_train of shape: (3636, 250)
+y_train of shape: (3636,)
+X_test of shape: (910, 250)
+y_test of shape: (910,)
+saving training PCA based sets...
+saving test PCA based sets...
+saving training PCA based sets indexes...
+saving test PCA based sets indexes...
+loading train and test PCA based sets...
+3636
+910
+loading train and test PCA based sets...
+True
+True
+Computing PCA for label: young
+full dataset of shape: (4546, 256, 256, 3)
+full full_dataset_name of shape: (4546,)
+full labels of shape: (4546,)
+X_data of shape: (4546, 256, 256, 3)
+Y_data of shape: (4546,)
+X_data_index of shape: (4546,)
+Y_data_index of shape: (4546,)
+Sanity Check: shuffling and indexes of images for future inference
+True
+True
+Sanity Check: shuffling and indexes of images for future inference
+True
+True
+True
+True
+Starting PCA Transform
+250
+X_train after transformation: [[ 2.88386757e+02  1.03991112e+02  3.36539986e+01 ... -2.90964202e+00
+  -3.75588173e+00  1.96318673e+00]
+ [ 1.85262169e+02 -3.74402091e+01 -1.70872222e+02 ... -5.20493970e+00
+  -1.15789211e+01  1.43899082e+01]
+ [-1.65644575e+02  1.50013615e+01 -1.09317975e+02 ... -1.00898749e+01
+   2.82900869e+00  5.97517406e+00]
+ ...
+ [-3.64015252e+02 -3.20004871e+00  1.48437627e+02 ... -5.99263992e+00
+  -2.15606344e+00  4.71670605e+00]
+ [ 7.08311395e+01  7.58880960e+01 -4.65442844e+01 ...  5.84609602e-02
+   2.86102827e+00 -1.30482202e+01]
+ [-1.86767788e+02 -2.50486508e+01 -6.14566787e+01 ... -4.23455697e+00
+  -7.73434800e+00 -3.65846814e+00]]
+X_test after transformation: [[-2.53297086e+02  5.50166465e+01  5.96325463e+01 ...  2.22778324e+00
+  -8.45420955e+00  1.15171859e+00]
+ [ 2.08986585e+02  2.01770006e+01  7.69662689e+01 ... -8.53946725e+00
+  -1.12478817e+01  5.03037358e+00]
+ [-3.71897322e+02 -1.78160404e+02 -5.63402052e+01 ... -3.04779524e+00
+  -5.67249726e+00  8.49765650e+00]
+ ...
+ [ 2.24379208e+02 -7.89498724e+01  3.72682024e+01 ... -2.84257294e+00
+   8.39694148e+00 -5.25307849e+00]
+ [ 1.97951286e+02 -1.44625970e+02  2.34419044e+02 ...  5.85460726e+00
+  -4.80408585e+00 -2.62603419e+00]
+ [ 3.56748603e+01 -1.90416177e+01 -9.74515705e+01 ...  2.42136855e-01
+  -2.20593595e+00 -1.08270318e+01]]
+X_train of shape: (3636, 250)
+y_train of shape: (3636,)
+X_test of shape: (910, 250)
+y_test of shape: (910,)
+saving training PCA based sets...
+saving test PCA based sets...
+saving training PCA based sets indexes...
+saving test PCA based sets indexes...
+loading train and test PCA based sets...
+3636
+910
+loading train and test PCA based sets...
+True
+True
+Computing PCA for label: human
+full dataset of shape: (4546, 256, 256, 3)
+full full_dataset_name of shape: (4546,)
+full labels of shape: (4546,)
+X_data of shape: (4546, 256, 256, 3)
+Y_data of shape: (4546,)
+X_data_index of shape: (4546,)
+Y_data_index of shape: (4546,)
+Sanity Check: shuffling and indexes of images for future inference
+True
+True
+Sanity Check: shuffling and indexes of images for future inference
+True
+True
+True
+True
+Starting PCA Transform
+250
+X_train after transformation: [[ 288.38675696  103.99111152   33.65399857 ...    2.61296633
+    -1.93267931   -7.89031095]
+ [ 185.26216894  -37.44020912 -170.87222204 ...    6.26036042
+     7.75982317   -2.94035329]
+ [-165.64457485   15.00136146 -109.31797493 ...   -2.43631602
+     9.84648156   -9.46622024]
+ ...
+ [-364.01525202   -3.20004871  148.43762665 ...    6.81545467
+    -5.84427682    0.86067636]
+ [  70.83113947   75.88809599  -46.54428437 ...   -1.85497718
+    -4.95493631    2.83217853]
+ [-186.76778844  -25.04865081  -61.45667872 ...    1.4542774
+     3.22545024  -12.67628281]]
+X_test after transformation: [[-2.53297086e+02  5.50166465e+01  5.96325463e+01 ... -1.82366251e+00
+   3.76622170e+00  1.86872898e+00]
+ [ 2.08986585e+02  2.01770006e+01  7.69662689e+01 ...  7.95381091e+00
+  -7.57743025e+00 -9.11471925e+00]
+ [-3.71897322e+02 -1.78160404e+02 -5.63402052e+01 ...  3.07608315e+00
+  -6.47555180e+00 -1.40986346e+00]
+ ...
+ [ 2.24379208e+02 -7.89498724e+01  3.72682024e+01 ...  7.66634368e+00
+  -7.10073323e+00  8.74228040e-01]
+ [ 1.97951286e+02 -1.44625970e+02  2.34419044e+02 ... -5.12026599e+00
+  -3.43419300e+00  9.63173838e+00]
+ [ 3.56748603e+01 -1.90416177e+01 -9.74515705e+01 ... -3.64365495e-01
+  -1.74245411e+01  5.54994560e+00]]
+X_train of shape: (3636, 250)
+y_train of shape: (3636,)
+X_test of shape: (910, 250)
+y_test of shape: (910,)
+saving training PCA based sets...
+saving test PCA based sets...
+saving training PCA based sets indexes...
+saving test PCA based sets indexes...
+loading train and test PCA based sets...
+3636
+910
+loading train and test PCA based sets...
+True
+True

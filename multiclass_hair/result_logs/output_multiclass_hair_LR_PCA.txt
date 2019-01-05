@@ -1,0 +1,86 @@
+X_train of shape: (3106, 250)
+y_train of shape: (3106,)
+X_test of shape: (777, 250)
+y_test of shape: (777,)
+X_train of shape: (2484, 250)
+y_train of shape: (2484,)
+X_val of shape: (622, 250)
+y_val of shape: (622,)
+X_test of shape: (777, 250)
+y_test of shape: (777,)
+Start grid search at 2019-01-04 17:01:35.192233
+{'split1_test_score': array([0.8125  , 0.8125  , 0.765625, 0.796875, 0.796875, 0.765625,
+       0.796875, 0.796875, 0.765625, 0.796875, 0.78125 , 0.765625]), 'split9_test_score': array([0.88135593, 0.88135593, 0.77966102, 0.88135593, 0.88135593,
+       0.76271186, 0.86440678, 0.86440678, 0.76271186, 0.86440678,
+       0.86440678, 0.76271186]), 'split7_train_score': array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), 'split0_train_score': array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), 'std_fit_time': array([0.92926458, 0.37578739, 0.35592156, 0.96317478, 0.17598505,
+       0.81143287, 1.40007318, 0.48917942, 0.90403248, 0.54589722,
+       0.36365045, 0.33292614]), 'split3_train_score': array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), 'param_solver': masked_array(data=['lbfgs', 'newton-cg', 'sag', 'lbfgs', 'newton-cg',
+                   'sag', 'lbfgs', 'newton-cg', 'sag', 'lbfgs',
+                   'newton-cg', 'sag'],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False, False, False],
+       fill_value='?',
+            dtype=object), 'rank_test_score': array([ 1,  1,  9,  3,  3, 10,  7,  5, 10,  5,  7, 10]), 'split1_train_score': array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), 'split5_train_score': array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), 'split9_train_score': array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), 'split6_test_score': array([0.74193548, 0.74193548, 0.67741935, 0.72580645, 0.72580645,
+       0.67741935, 0.72580645, 0.72580645, 0.67741935, 0.72580645,
+       0.72580645, 0.67741935]), 'split4_test_score': array([0.85714286, 0.85714286, 0.82539683, 0.87301587, 0.87301587,
+       0.80952381, 0.85714286, 0.87301587, 0.80952381, 0.87301587,
+       0.87301587, 0.80952381]), 'params': [{'C': 0.01, 'solver': 'lbfgs'}, {'C': 0.01, 'solver': 'newton-cg'}, {'C': 0.01, 'solver': 'sag'}, {'C': 0.1, 'solver': 'lbfgs'}, {'C': 0.1, 'solver': 'newton-cg'}, {'C': 0.1, 'solver': 'sag'}, {'C': 1, 'solver': 'lbfgs'}, {'C': 1, 'solver': 'newton-cg'}, {'C': 1, 'solver': 'sag'}, {'C': 10, 'solver': 'lbfgs'}, {'C': 10, 'solver': 'newton-cg'}, {'C': 10, 'solver': 'sag'}], 'std_score_time': array([0.        , 0.        , 0.        , 0.        , 0.        ,
+       0.        , 0.00030019, 0.        , 0.        , 0.        ,
+       0.        , 0.        ]), 'split0_test_score': array([0.76923077, 0.76923077, 0.76923077, 0.76923077, 0.76923077,
+       0.76923077, 0.76923077, 0.76923077, 0.76923077, 0.76923077,
+       0.76923077, 0.76923077]), 'mean_fit_time': array([3.64134252, 2.17666306, 3.53911593, 3.18572454, 2.08543932,
+       6.15619342, 3.56972427, 2.57056503, 7.08523407, 1.92279749,
+       2.14605527, 6.72124262]), 'param_C': masked_array(data=[0.01, 0.01, 0.01, 0.1, 0.1, 0.1, 1, 1, 1, 10, 10, 10],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False, False, False],
+       fill_value='?',
+            dtype=object), 'split4_train_score': array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), 'mean_train_score': array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), 'split6_train_score': array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), 'std_train_score': array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]), 'split3_test_score': array([0.8125  , 0.8125  , 0.65625 , 0.796875, 0.796875, 0.65625 ,
+       0.796875, 0.796875, 0.65625 , 0.796875, 0.796875, 0.65625 ]), 'split7_test_score': array([0.7 , 0.7 , 0.65, 0.7 , 0.7 , 0.65, 0.7 , 0.7 , 0.65, 0.7 , 0.7 ,
+       0.65]), 'split2_train_score': array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), 'split2_test_score': array([0.765625, 0.765625, 0.71875 , 0.765625, 0.765625, 0.71875 ,
+       0.765625, 0.765625, 0.71875 , 0.765625, 0.765625, 0.71875 ]), 'split8_test_score': array([0.84745763, 0.84745763, 0.76271186, 0.84745763, 0.84745763,
+       0.76271186, 0.84745763, 0.84745763, 0.76271186, 0.84745763,
+       0.84745763, 0.76271186]), 'mean_score_time': array([0.        , 0.        , 0.        , 0.        , 0.        ,
+       0.        , 0.00010006, 0.        , 0.        , 0.        ,
+       0.        , 0.        ]), 'split8_train_score': array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), 'std_test_score': array([0.06087543, 0.06087543, 0.06568721, 0.0633139 , 0.0633139 ,
+       0.0648218 , 0.0587831 , 0.06100895, 0.0648218 , 0.06100895,
+       0.06082664, 0.0648218 ]), 'split5_test_score': array([0.69354839, 0.69354839, 0.61290323, 0.69354839, 0.69354839,
+       0.59677419, 0.69354839, 0.69354839, 0.59677419, 0.69354839,
+       0.69354839, 0.59677419]), 'mean_test_score': array([0.78778135, 0.78778135, 0.72186495, 0.78456592, 0.78456592,
+       0.7170418 , 0.78135048, 0.7829582 , 0.7170418 , 0.7829582 ,
+       0.78135048, 0.7170418 ])}
+LogisticRegression(C=0.01, class_weight=None, dual=False, fit_intercept=True,
+          intercept_scaling=1, max_iter=5000, multi_class='auto', n_jobs=5,
+          penalty='l2', random_state=0, solver='lbfgs', tol=0.0001,
+          verbose=0, warm_start=False)
+Stop grid search 2019-01-04 17:03:38.530128
+Elapsed grid search time 0:02:03.337895
+Start learning with best params at 2019-01-04 17:03:38.530128
+Stop learning 2019-01-04 17:04:08.005024
+Elapsed learning time 0:00:29.474896
+0.8314028314028314
+Classification report for classifier LogisticRegression(C=0.01, class_weight=None, dual=False, fit_intercept=True,
+          intercept_scaling=1, max_iter=5000, multi_class='auto', n_jobs=5,
+          penalty='l2', random_state=0, solver='lbfgs', tol=0.0001,
+          verbose=0, warm_start=False):
+              precision    recall  f1-score   support
+
+           0       0.29      0.46      0.35        13
+           1       0.87      0.91      0.89       173
+           2       0.96      0.89      0.92       108
+           3       0.75      0.80      0.78       192
+           4       0.83      0.79      0.81       169
+           5       0.89      0.81      0.85       122
+
+   micro avg       0.83      0.83      0.83       777
+   macro avg       0.77      0.78      0.77       777
+weighted avg       0.84      0.83      0.83       777
+
+
+Confusion matrix:
+[[  6   3   0   0   0   4]
+ [  5 157   0   8   1   2]
+ [  1   5  96   6   0   0]
+ [  1  11   4 154  20   2]
+ [  1   0   0  30 134   4]
+ [  7   4   0   6   6  99]]
+Accuracy=0.8314028314028314
