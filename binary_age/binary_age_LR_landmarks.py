@@ -167,7 +167,7 @@ print('y_test of shape:', y_test.shape)
 
 
 # creating dummy LR classifier for hyperparameterization
-classifier = LogisticRegression(penalty='l2', random_state=0,  multi_class='auto', max_iter=-1, n_jobs=5)
+classifier = LogisticRegression(penalty='l2', random_state=0,  multi_class='auto', max_iter=10000, n_jobs=5)
 
 n_folds = 10
 # choosing different parameter combinations to try
