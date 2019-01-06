@@ -167,12 +167,12 @@ print('y_test of shape:', y_test.shape)
 
 
 # creating dummy LR classifier for hyperparameterization
-classifier = LogisticRegression(penalty='l2', random_state=0,  multi_class='auto', max_iter=10000, n_jobs=5)
+classifier = LogisticRegression(penalty='l2', random_state=0,  multi_class='auto', max_iter=15000, n_jobs=5)
 
-n_folds = 10
+n_folds = 8
 # choosing different parameter combinations to try
-param_grid = {'C': [0.01, 0.1, 1, 10],
-              'solver': ['lbfgs', 'newton-cg', 'sag'],
+param_grid = {'C': [0.01, 0.1, 1],
+              'solver': ['lbfgs'],
              }
 
 # type of scoring used to compare parameter combinations

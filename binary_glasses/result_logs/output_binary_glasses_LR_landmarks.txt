@@ -1,0 +1,75 @@
+starting gatherer
+Sanity Check
+full dataset of shape: (4461, 268)
+full labels of shape: (4461,)
+TOTAL NUMBER OF FACES NOT DETECTED WITH OUR LANDMARKS DETECTOR (IN-BUILT, pre-trained model): 85
+X_data of shape: (4461, 268)
+Y_data of shape: (4461,)
+X_train of shape: (2854, 268)
+y_train of shape: (2854,)
+X_val of shape: (714, 268)
+y_val of shape: (714,)
+X_test of shape: (893, 268)
+y_test of shape: (893,)
+Start grid search at 2019-01-05 03:03:11.751705
+{'split7_train_score': array([ 0.90357698,  0.89891135,  0.95489891,  0.92379471,  0.98289269,
+        0.93001555]), 'std_score_time': array([ 0.,  0.,  0.,  0.,  0.,  0.]), 'split2_test_score': array([ 0.86111111,  0.86111111,  0.88888889,  0.88888889,  0.81944444,
+        0.88888889]), 'split7_test_score': array([ 0.84507042,  0.83098592,  0.84507042,  0.84507042,  0.84507042,
+        0.84507042]), 'split4_train_score': array([ 0.90965732,  0.90342679,  0.95794393,  0.92211838,  0.99221184,
+        0.92523364]), 'split6_test_score': array([ 0.88732394,  0.88732394,  0.88732394,  0.88732394,  0.88732394,
+        0.88732394]), 'split8_test_score': array([ 0.88571429,  0.87142857,  0.9       ,  0.9       ,  0.9       ,
+        0.91428571]), 'split6_train_score': array([ 0.90979782,  0.9066874 ,  0.95645412,  0.91757387,  0.98289269,
+        0.9222395 ]), 'mean_test_score': array([ 0.86554622,  0.85714286,  0.87394958,  0.87394958,  0.8627451 ,
+        0.88095238]), 'param_C': masked_array(data = [0.01 0.01 0.1 0.1 1 1],
+             mask = [False False False False False False],
+       fill_value = ?)
+, 'split1_train_score': array([ 0.91121495,  0.90654206,  0.95794393,  0.92834891,  0.98753894,
+        0.93146417]), 'std_train_score': array([ 0.00472914,  0.00398459,  0.00259141,  0.00485442,  0.00351279,
+        0.00389154]), 'std_test_score': array([ 0.041829  ,  0.03919071,  0.02841697,  0.03024548,  0.02695933,
+        0.02626461]), 'split5_train_score': array([ 0.91744548,  0.90809969,  0.95482866,  0.92990654,  0.98286604,
+        0.92990654]), 'param_solver': masked_array(data = ['lbfgs' 'sag' 'lbfgs' 'sag' 'lbfgs' 'sag'],
+             mask = [False False False False False False],
+       fill_value = ?)
+, 'split1_test_score': array([ 0.88888889,  0.875     ,  0.86111111,  0.86111111,  0.86111111,
+        0.86111111]), 'split8_train_score': array([ 0.9068323 ,  0.89751553,  0.95031056,  0.92236025,  0.99068323,
+        0.92236025]), 'split3_test_score': array([ 0.84722222,  0.83333333,  0.83333333,  0.86111111,  0.86111111,
+        0.875     ]), 'mean_train_score': array([ 0.90974105,  0.90289545,  0.95487149,  0.9228121 ,  0.98614966,
+        0.92608143]), 'params': [{'C': 0.01, 'solver': 'lbfgs'}, {'C': 0.01, 'solver': 'sag'}, {'C': 0.1, 'solver': 'lbfgs'}, {'C': 0.1, 'solver': 'sag'}, {'C': 1, 'solver': 'lbfgs'}, {'C': 1, 'solver': 'sag'}], 'split3_train_score': array([ 0.91121495,  0.90342679,  0.95482866,  0.91744548,  0.98909657,
+        0.92056075]), 'split9_train_score': array([ 0.91770186,  0.9052795 ,  0.95652174,  0.93012422,  0.98602484,
+        0.93012422]), 'mean_fit_time': array([ 0.3888999 ,  4.81434586,  0.6878768 ,  6.89298694,  1.34684937,
+        7.35711324]), 'std_fit_time': array([ 0.04144186,  0.16926687,  0.08470477,  0.49673093,  0.07882894,
+        0.87752477]), 'rank_test_score': array([4, 6, 2, 2, 5, 1]), 'split5_test_score': array([ 0.76388889,  0.76388889,  0.83333333,  0.80555556,  0.81944444,
+        0.83333333]), 'split4_test_score': array([ 0.88888889,  0.875     ,  0.90277778,  0.88888889,  0.88888889,
+        0.88888889]), 'split2_train_score': array([ 0.90342679,  0.89563863,  0.95482866,  0.91900312,  0.98598131,
+        0.92679128]), 'mean_score_time': array([ 0.,  0.,  0.,  0.,  0.,  0.]), 'split0_train_score': array([ 0.90654206,  0.90342679,  0.95015576,  0.91744548,  0.98130841,
+        0.92211838]), 'split0_test_score': array([ 0.93055556,  0.91666667,  0.91666667,  0.91666667,  0.86111111,
+        0.91666667]), 'split9_test_score': array([ 0.85714286,  0.85714286,  0.87142857,  0.88571429,  0.88571429,
+        0.9       ])}
+LogisticRegression(C=1, class_weight=None, dual=False, fit_intercept=True,
+          intercept_scaling=1, max_iter=15000, multi_class='auto',
+          n_jobs=5, penalty='l2', random_state=0, solver='sag', tol=0.0001,
+          verbose=0, warm_start=False)
+Stop grid search 2019-01-05 03:04:16.259617
+Elapsed grid search time 0:01:04.507912
+Start learning with best params at 2019-01-05 03:04:16.259617
+Stop learning 2019-01-05 03:04:48.991515
+Elapsed learning time 0:00:32.731898
+0.894736842105
+Classification report for classifier LogisticRegression(C=1, class_weight=None, dual=False, fit_intercept=True,
+          intercept_scaling=1, max_iter=15000, multi_class='auto',
+          n_jobs=5, penalty='l2', random_state=0, solver='sag', tol=0.0001,
+          verbose=0, warm_start=False):
+              precision    recall  f1-score   support
+
+          -1       0.90      0.96      0.93       641
+           1       0.87      0.74      0.80       252
+
+   micro avg       0.89      0.89      0.89       893
+   macro avg       0.89      0.85      0.86       893
+weighted avg       0.89      0.89      0.89       893
+
+
+Confusion matrix:
+[[613  28]
+ [ 66 186]]
+Accuracy=0.8947368421052632

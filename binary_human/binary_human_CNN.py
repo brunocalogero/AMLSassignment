@@ -44,7 +44,7 @@ def pull_dataset():
 
     # collect labels
     df = pd.read_csv(labels_filename, skiprows=1, index_col='file_name')
-    newdf = df['hair_color']
+    newdf = df['human']
 
     # collect pre-processed images and sort them to labels
     for (root, dirs, dat_files) in os.walk('{0}'.format(images_dir)):
@@ -52,17 +52,16 @@ def pull_dataset():
         for file in dat_files:
 
             int_file = int(file[:-4])
-            # removed -1 labeled images for hair colour
-            if df.loc[int_file, 'hair_color'] != -1:
-                # image grayscaling at import
-                img = cv2.imread('{0}/{1}'.format(images_dir, file), grey_scale)
-                # image equalisation (to be inserted if interesting)
-                # rescaling image
-                res = cv2.resize(img, dsize=(128, 128), interpolation=cv2.INTER_LINEAR)
-                # turn to float for zero centering
-                res = res.astype(float)
-                full_dataset.append(res)
-                full_labels.append(int_file)
+
+            # image grayscaling at import
+            img = cv2.imread('{0}/{1}'.format(images_dir, file), grey_scale)
+            # image equalisation (to be inserted if interesting)
+            # rescaling image
+            res = cv2.resize(img, dsize=(128, 128), interpolation=cv2.INTER_LINEAR)
+            # turn to float for zero centering
+            res = res.astype(float)
+            full_dataset.append(res)
+            full_labels.append(int_file)
 
     # only select rows of interest (none outliers) and only keep 'hair_color' feature to be evaluated (removed -1 labeled images for hair colour)
     full_labels = newdf.loc[full_labels]
@@ -91,7 +90,7 @@ def pull_dataset():
 # Function to create model, required for KerasClassifier
 def create_model(optimizer='adam', learn_rate=0.001, amsgrad=False, activation=tf.nn.leaky_relu):
 
-    channel_1, channel_2, channel_3, num_classes =  64, 32, 8, 6
+    channel_1, channel_2, channel_3, num_classes =  32, 16, 8, 2
     # create model
     model = Sequential()
 
@@ -108,14 +107,14 @@ def create_model(optimizer='adam', learn_rate=0.001, amsgrad=False, activation=t
     # model.add(Conv2D(channel_3, (3, 3), padding='SAME', activation=activation))
     # model.add(BatchNormalization())
     # model.add(MaxPooling2D(pool_size=(2, 2), strides=None, padding='valid'))
-    model.add(Dropout(0.5))
+    model.add(Dropout(0.2))
 
     model.add(Flatten())
     model.add(Dense(num_classes, activation='softmax'))
 
     optimizer = Adam(lr=learn_rate, amsgrad=amsgrad )
     # Compile model (sparse cross-entropy can be used if one hot encoding not used)
-    model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=[keras.metrics.mae, keras.metrics.categorical_accuracy, 'acc'])
+    model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=[keras.metrics.mae, keras.metrics.categorical_accuracy])
 
     return model
 
@@ -216,8 +215,7 @@ def activation_hyper(n_folds):
 # import data
 X_data, y_data_orig = pull_dataset()
 # one hot encode labels (for categorical cross-entropy)
-y_data = to_categorical(y_data_orig, num_classes=6)
-
+y_data = to_categorical(y_data_orig, num_classes=2)
 
 # Perform train and test split (random state set to 1 to ensure same distribution accross different sets).
 # This split is obviously case specific! but cross validation allows us to avoid over-fitting so lets make sure we have a validation set ready.
@@ -249,7 +247,6 @@ print('X_test of shape:', X_test.shape)
 
 # first: compute the image mean based on the training data
 mean_image = np.mean(X_train, axis=0)
-std_image = np.std(X_train, axis=0)
 print(mean_image[:10]) # print a few of the elements
 # plt.figure(figsize=(4,4))
 # plt.imshow(mean_image.reshape((128,128,3)).astype('uint8')) # visualize the mean image
@@ -257,11 +254,8 @@ print(mean_image[:10]) # print a few of the elements
 
 # second: subtract the mean image from train and test data
 X_train -= mean_image
-X_train /= std_image
 X_val -= mean_image
-X_val /= std_image
 X_test -= mean_image
-X_test /= std_image
 
 # sanity check
 print('X_train of shape:', X_train.shape)
@@ -281,7 +275,7 @@ print('X_test of shape:', X_test.shape)
 
 # # declaring number of folds for cross_validation
 # n_folds = 8   # if using hyperparameterisation, please uncomment
-epochs = 10
+epochs = 8
 batch_size = 64
 
 # retrieve model
@@ -295,7 +289,7 @@ model.summary()
 start_time = dt.datetime.now()
 print('Start learning with best params at {}'.format(str(start_time)))
 
-model.fit(X_train, y_train, validation_data=(X_val,y_val), epochs=epochs, batch_size=batch_size, verbose=1, callbacks=[TensorBoard(log_dir='tf_logs/10/train')])
+model.fit(X_train, y_train, validation_data=(X_val,y_val), epochs=epochs, batch_size=batch_size, verbose=1, callbacks=[TensorBoard(log_dir='tf_logs/8/train')])
 
 end_time = dt.datetime.now()
 print('Stop learning {}'.format(str(end_time)))
