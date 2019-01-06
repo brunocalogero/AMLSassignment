@@ -80,7 +80,7 @@ def pull_dataset():
 
     # collect labels
     df = pd.read_csv(labels_filename, skiprows=1, index_col='file_name')
-    newdf = df['young']
+    newdf = df['eyeglasses']
 
     # collect pre-processed images and sort them to labels
     for (root, dirs, dat_files) in os.walk('{0}'.format(images_dir)):
@@ -350,27 +350,6 @@ plt.legend()
 plt.show()
 
 
-
-print(len(predictions_sparse) == len(y_test_orig))
-
-
-print(predictions_sparse)
-print(y_test_orig)
-
-print(accuracy_score(y_test_orig, predictions_sparse))
-
-# Now predict the value of the test
-expected = y_test_orig
-
-print("Classification report for classifier:\n%s\n", metrics.classification_report(expected, predictions_sparse))
-
-cm = metrics.confusion_matrix(expected, predictions_sparse)
-print("Confusion matrix:\n%s" % cm)
-
-print("Accuracy={}".format(metrics.accuracy_score(expected, predictions_sparse)))
-
-
-
 print('starting fit on inference data given to us on Friday before the deadline')
 
 prediction = []
@@ -394,9 +373,9 @@ print(prediction)
 
 for i, values in enumerate(prediction):
     if values < 0.5:
-        prediction_new.append('old')
+        prediction_new.append('no_eye_glasses')
     else:
-        prediction_new.append('young')
+        prediction_new.append('eyeglasses')
 
 
 print('creating csv for inference')
