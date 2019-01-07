@@ -1,6 +1,9 @@
 # AMLSassignment
 ELEC0132: Applied Machine Learning Systems (18/19) Assignment
 
+## Download Full repo with datasets available:
+https://drive.google.com/open?id=1XODub1W-K3Z8mu4WHU5fix6asR0PK4xq
+
 ## Setup
 - I highly suggest using a python3.5 conda environment (with tensorflow-gpu==1.4 if using gpu)
 - `pip install -r requirements.txt`
@@ -24,7 +27,7 @@ ELEC0132: Applied Machine Learning Systems (18/19) Assignment
 # Common Pitfalls and gitignored folders
 
 I have explicitly not included the `dataset`, `new_dataset` and `test_dataset` (5th of January 2019 none-labeled dataset) folders in my commits.
-I have added the latter in the `.gitignore` file since they are heavy and don't want to put load on Github's poor data-centers. 
+I have added the latter in the `.gitignore` file since they are heavy and don't want to put load on Github's poor data-centers.
 
 # USEFUL LINKS (more to be added soon)
 https://arxiv.org/pdf/1509.06451.pdf - paper on DCN for face-detection that handles occlusion really well.
