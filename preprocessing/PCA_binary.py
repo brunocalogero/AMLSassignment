@@ -108,8 +108,7 @@ def pull_dataset(label):
     print('full labels of shape:', full_labels.shape)
 
 
-    # Reshuffling data (for extra randomness)
-    r = np.random.RandomState(1234)
+    # Reshuffling data (for extra randomness) (notice the same random state)
     X_data_index, Y_data_index = shuffle(full_dataset_name, full_labels, random_state=1)
     X_data, Y_data = shuffle(full_dataset, full_labels, random_state=1)
 

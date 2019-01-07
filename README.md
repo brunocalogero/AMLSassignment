@@ -8,8 +8,23 @@ ELEC0132: Applied Machine Learning Systems (18/19) Assignment
 ## File Structure / Running
  - __Data Pre-Processing__
   - run `data_preprocessing.ipynb`, all results are displayed inside the python notebook
- - __Binary/Multi-class Classifiers__
-  - Each file can be run by simply typing `python desired_file_to_run.py`, all the results have been stored in `result_logs`, this includes txt files containing outputs of various runs of the different algorithms. A `tf_logs` folder can also be seen and includes all the CNN runs with different structures and parameters, the latter can be run using tensorboard in the following way: `tensorboar --logdir=tf_logs/1/train` for example. The numbers coincide with the txt files of the CNNs (sometimes shifted by one in the case of the multi-class problem).
+ - __Main folders to lookout for__
+  - `binary_age` for all learning and test runs with SVM, Logistic Regression, CNN, VGG on the 'young vs old' binary problem.
+  - `binary_emotion` for all learning and test runs with SVM, Logistic Regression, CNN, VGG on the 'smiling vs not smiling' binary problem.
+  - `binary_glasses` for all learning and test runs with SVM, Logistic Regression, CNN, VGG on the 'glasses vs no glasses' binary problem.
+  - `binary_human` for all learning and test runs with SVM, Logistic Regression, CNN, VGG on the 'human vs cartoon' binary problem.
+  - `multiclass_hair` for all learning and test runs with SVM, Logistic Regression, CNN on the 'bold vs blond vs brown vs ginger vs dark vs grey' multiclass problem.
+  - `preprocessing` for all pre-processing related files, PCA dataset conversion files (`PCA_binary.py` and `PCA_multiclass.py`), outlier detection in `data_preprocessing.ipynb`, different dlib '.dat' feature extractors and pre-trained models (ex: CNN pre-trained facial detector/feature extractor).
+  - `pca_dataset` includes all the numpy saved datasets from the pixel to PCA feature conversion.
+  - `inference` contains all our inference results on the test splits that have been made on the original dataset (in each case 20% of the shuffled dataset, the splits have been made with the same seed for each runs so should be similar, same goes for the shuffling for every different file) (also, this is not the none labeled inference set of 100 images which was given to us on the 5th of January 2019), it also contains the VGG16 runs of all the binary tasks for the none labeled, 100 example, inference set, given to us on the 5th of January 2019. There seems to be quite the over-fitting in some cases but the latter are still promising results.  
+  - Each binary and multiclass problem folders contain a `result_logs` folder that contains all the logging outputs for all the different runs for the given problem (using different types of features for the data - augmented landmarks, 250 first PCA components, normal 128x128 RGB pixel data). The latter are clearly labeled with what type of run it was, for example, in `binary_age/result_logs/output_binary_age_LR_PCA_plotting.txt`, we will have the learning curves be printed based on the cross validated n-fold grid search and results in `binary_age/result_logs/output_binary_age_LR_PCA.txt`, cross-validation matrix and other useful metrics are printed such as f1-scores and inference accuracies, as well as model architectures in the case of CNN or VGG codes. In the `result_logs` folder we also have intuitively named `.png` files that show learning (training and validation accuracy) curves and plots for the different models being ran. The inference `.csv` files are also included here but more accessible previously described `inference` folder at the root of the project. a compressed zip file (for easy download) of the latter is also provided at the root.  
+ - __TensorBoard__
+  - In each classification problem folder a `tf_logs` folder can also be seen and includes all the CNN runs with different structures and parameters, the latter can be run using tensorboard in the following way: `tensorboar --logdir=tf_logs/1/train` for example. The numbers coincide with the txt files of the CNNs (sometimes shifted by one in the case of the multi-class problem).
+
+# Common Pitfalls and gitignored folders
+
+I have explicitly not included the `dataset`, `new_dataset` and `test_dataset` (5th of January 2019 none-labeled dataset) folders in my commits.
+I have added the latter in the `.gitignore` file since they are heavy and don't want to put load on Github's poor data-centers. 
 
 # USEFUL LINKS (more to be added soon)
 https://arxiv.org/pdf/1509.06451.pdf - paper on DCN for face-detection that handles occlusion really well.
@@ -30,4 +45,4 @@ https://machinelearningmastery.com/dropout-regularization-deep-learning-models-k
 https://www.dataquest.io/blog/learning-curves-machine-learning/
 https://medium.com/difference-engine-ai/keras-a-thing-you-should-know-about-keras-if-you-plan-to-train-a-deep-learning-model-on-a-large-fdd63ce66bd2
 
-and many many more ... 
+and many many more ...

@@ -20,11 +20,11 @@ labels_filename = 'attribute_list.csv'
 grey_scale = 1
 
 # import data (no one hot encoding)
-data_train = np.load('../pca_dataset/pca_train.npz')
+data_train = np.load('../pca_dataset/pca_hair_color_train.npz')
 X_train = data_train['name1']
 y_train = data_train['name2']
 
-data_test = np.load('../pca_dataset/pca_test.npz')
+data_test = np.load('../pca_dataset/pca_hair_color_test.npz')
 X_test = data_test['name1']
 y_test = data_test['name2']
 

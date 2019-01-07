@@ -1,6 +1,7 @@
 import time
 import os
 import cv2
+import csv
 
 import datetime as dt
 import pandas as pd
@@ -19,16 +20,7 @@ images_dir = '../new_dataset'
 labels_filename = 'attribute_list.csv'
 # user choses grey scale or not, 0 for yes, 1 for no
 grey_scale = 1
-
-# import PCA data (no one hot encoding)
-data_train = np.load('../pca_dataset/pca_train.npz')
-X_train = data_train['name1']
-y_train = data_train['name2']
-
-data_test = np.load('../pca_dataset/pca_test.npz')
-X_test = data_test['name1']
-y_test = data_test['name2']
-
+label = 'hair_color'
 
 # learning curve pulled from the web (implements cross validation, fitting(training) and inference)
 def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None,
@@ -114,14 +106,32 @@ def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None,
     plt.legend(loc="best")
     return plt, train_scores_mean, train_scores_std, test_scores_mean, test_scores_std, test_scores
 
+print('loading train and test PCA based sets...')
+# import PCA data (no one hot encoding)
+data_train = np.load('../pca_dataset/pca_{0}_train.npz'.format(label))
+X_train = data_train['name1']
+y_train = data_train['name2']
+
+data_test = np.load('../pca_dataset/pca_{0}_test.npz'.format(label))
+X_test = data_test['name1']
+y_test = data_test['name2']
+
+# test that loading is working fine
+data_train_index = np.load('../pca_dataset/pca_{0}_train_index.npz'.format(label))
+X_train_index = data_train_index['name1']
+
+data_test_index = np.load('../pca_dataset/pca_{0}_test_index.npz'.format(label))
+X_test_index = data_test_index['name1']
 
 # sanity check
 print('X_train of shape:', X_train.shape)
 print('y_train of shape:', y_train.shape)
 print('X_test of shape:', X_test.shape)
 print('y_test of shape:', y_test.shape)
+print('X_test of shape:', X_train_index.shape)
+print('y_test of shape:', X_test_index.shape)
 
-title = "Learning Curves for Multi-class Hair Linear Kernel SVM (zero-centered 128x128 RGB data)"
+title = "Learning Curves for {0} binary Logistic Regression (Softmax) (250 First components (PCA) from 256x256 RGB data)".format(label)
 # fit the best alg to the training data
 start_time = dt.datetime.now()
 print('Start cross val with SVM linear {}'.format(str(start_time)))
@@ -129,7 +139,7 @@ print('Start cross val with SVM linear {}'.format(str(start_time)))
 # Cross validation with 100 iterations to get smoother mean test and train
 # score curves, each time with 20% data randomly selected as a validation set.
 cv = ShuffleSplit(n_splits=10, test_size=0.2, random_state=0)
-estimator = LogisticRegression(C=0.01, max_iter=6000, multi_class='auto', n_jobs=5, penalty='l2', solver='lbfgs')
+estimator = LogisticRegression(C=0.01, max_iter=15000, multi_class='auto', n_jobs=5, penalty='l2', solver='lbfgs')
 plt, train_scores_mean, train_scores_std, test_scores_mean, test_scores_std, test_scores = plot_learning_curve(estimator, title, X_train, y_train, ylim=(0.7, 1.01), cv=cv, n_jobs=4)
 
 end_time = dt.datetime.now()
@@ -148,10 +158,10 @@ print('Stop learning {}'.format(str(end_time)))
 elapsed_time= end_time - start_time
 print('Elapsed learning time {}'.format(str(elapsed_time)))
 
-
 # inference: predict using test set
 predictions = estimator.predict(X_test)
-print(accuracy_score(y_test, predictions))
+accuracy_scr = accuracy_score(y_test, predictions)
+print(accuracy_scr)
 
 # Now predict the value of the test
 expected = y_test
@@ -163,3 +173,11 @@ cm = metrics.confusion_matrix(expected, predictions)
 print("Confusion matrix:\n%s" % cm)
 
 plt.show()
+
+print('creating csv for inference')
+with open('./result_logs/inference_LR.csv', 'w') as csvfile:
+    filewriter = csv.writer(csvfile, delimiter=',',
+                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    filewriter.writerow([accuracy_scr, '.'])
+    for i, file in enumerate(X_test_index):
+        filewriter.writerow(['{0}.png'.format(file), predictions[i]])

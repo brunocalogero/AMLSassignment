@@ -3,7 +3,6 @@ cv2
 keras
 tensorflow
 pandas
-numpy
 sklearn
 matplotlib
 dlib
