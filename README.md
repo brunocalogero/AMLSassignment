@@ -8,6 +8,12 @@ https://drive.google.com/open?id=1XODub1W-K3Z8mu4WHU5fix6asR0PK4xq
 - I highly suggest using a python3.5 conda environment (with tensorflow-gpu==1.4 if using gpu)
 - `pip install -r requirements.txt`
 
+## Original Dataset
+Although all the folders from the previous version of the repo (including all three necessary versions of the dataset - to be able to run the code) can be found on the drive link above, you can also download the original provided labeled dataset (with outliers) using this link: https://drive.google.com/drive/folders/1NgP2jQakFHibIhpevDLshodWw-L52yXi?usp=sharing
+
+## Written Report
+You can currently find the latest version of the report in the provided pdf: `deep_learning_dive.pdf`
+
 ## File Structure / Running
  - __Data Pre-Processing__
   - run `data_preprocessing.ipynb`, all results are displayed inside the python notebook
